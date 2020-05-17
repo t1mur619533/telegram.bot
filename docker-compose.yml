@@ -1,0 +1,23 @@
+version: '3.4'
+
+networks:
+  bot-dev:
+    driver: bridge
+
+services:
+  notifications.api:
+    image: ${DOCKER_REGISTRY-}notificationsapi
+    build:
+      context: .
+      dockerfile: src/Notifications.Api/Dockerfile
+    networks:
+      - bot-dev
+
+  pgadmin:
+    container_name: torsocks5proxy
+    image: peterdavehello/tor-socks-proxy
+    ports:
+      - "127.0.0.1:9150:9150"
+    networks:
+      - bot-dev
+    restart: unless-stopped
