@@ -1,10 +1,11 @@
 using System;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 using MihaZupan;
 using Telegram.Bot;
 using Telegram.Bot.Args;
 using Telegram.Bot.Types.Enums;
+using Telegram.NotificationBot.Options;
 
 namespace Telegram.NotificationBot
 {
@@ -12,12 +13,9 @@ namespace Telegram.NotificationBot
     {
         private readonly TelegramBotClient telegramBotClient;
 
-        public MessageSender(IConfiguration configuration)
+        public MessageSender(IOptions<TelegramBot> options)
         {
-            var token = configuration["TelegramBotSettings:telegramBotToken"];
-            var host = configuration["TelegramBotSettings:proxyHost"];
-            var port = int.Parse(configuration["TelegramBotSettings:proxyPort"]);
-            telegramBotClient = new TelegramBotClient(token, new HttpToSocks5Proxy(host, port));
+            telegramBotClient = new TelegramBotClient(options.Value.TelegramBotToken, new HttpToSocks5Proxy(options.Value.ProxyHost, options.Value.ProxyPort));
             telegramBotClient.OnMessage += BotOnMessageReceived;
             telegramBotClient.StartReceiving();
         }

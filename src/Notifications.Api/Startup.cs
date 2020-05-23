@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Telegram.NotificationBot;
+using Telegram.NotificationBot.Options;
 
 namespace Notifications.Api
 {
@@ -20,6 +21,7 @@ namespace Notifications.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<TelegramBot>(Configuration);
             services.AddScoped<IMessageSender, MessageSender>();
             services.AddSingleton<ITelegramBot, MessageSender>();
 

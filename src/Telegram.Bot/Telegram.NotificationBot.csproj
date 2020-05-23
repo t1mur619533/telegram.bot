@@ -7,6 +7,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="5.0.0-preview.3.20215.2" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0-preview.3.20215.2" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="3.1.4" />
     <PackageReference Include="Telegram.Bot" Version="15.5.1" />
     <PackageReference Include="HttpToSocks5Proxy" Version="1.4.0" />
   </ItemGroup>

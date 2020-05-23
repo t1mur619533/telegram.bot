@@ -9,11 +9,11 @@ services:
     image: ${DOCKER_REGISTRY-}notificationsapi
     build:
       context: .
-      dockerfile: src/Notifications.Api/Dockerfile
+      dockerfile: Dockerfile
     networks:
       - bot-dev
 
-  pgadmin:
+  torsocks5proxy:
     container_name: torsocks5proxy
     image: peterdavehello/tor-socks-proxy
     ports:

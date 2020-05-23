@@ -5,9 +5,9 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://+:5005
-      - TelegramBotSettings:proxyHost=torsocks5proxy
-      - TelegramBotSettings:proxyPort=9150
-      - TelegramBotSettings:telegramBotToken=my.token
+      - ProxyHost=torsocks5proxy
+      - ProxyPort=9150
+      - TelegramBotToken=my.token
     ports:
       - "5005:5005"
     volumes:
