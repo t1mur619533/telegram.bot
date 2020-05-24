@@ -15,7 +15,10 @@ namespace Telegram.NotificationBot
 
         public MessageSender(IOptions<TelegramBot> options)
         {
-            telegramBotClient = new TelegramBotClient(options.Value.TelegramBotToken, new HttpToSocks5Proxy(options.Value.ProxyHost, options.Value.ProxyPort));
+            telegramBotClient = string.IsNullOrWhiteSpace(options.Value.ProxyHost)
+                ? new TelegramBotClient(options.Value.TelegramBotToken)
+                : new TelegramBotClient(options.Value.TelegramBotToken,
+                    new HttpToSocks5Proxy(options.Value.ProxyHost, options.Value.ProxyPort));
             telegramBotClient.OnMessage += BotOnMessageReceived;
             telegramBotClient.StartReceiving();
         }
